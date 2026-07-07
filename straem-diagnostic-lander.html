@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STRÆM Diagnostic — Où perdez-vous du terrain dans le médico-social ?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:    #0B0B0B;
+    --deep:     #111111;
+    --surface:  #161616;
+    --card:     #1C1C1C;
+    --border:   rgba(201,168,76,0.18);
+    --gold:     #C9A84C;
+    --gold-lt:  #E5C97E;
+    --cream:    #F2EDE4;
+    --muted:    #8A8070;
+    --text:     #D8D0C4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; line-height: 1.15; color: var(--cream); }
+  .gold { color: var(--gold); }
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  /* ─── HERO ─── */
+  #hero {
+    padding: 64px 0 48px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 0.18em; color: var(--cream); margin-bottom: 40px; }
+  .logo span { color: var(--gold); }
+  .eyebrow {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 24px;
+  }
+  h1 { font-size: clamp(30px, 6vw, 44px); margin-bottom: 20px; letter-spacing: -0.01em; }
+  h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: 17px; color: var(--text); max-width: 480px; margin: 0 auto 36px;
+  }
+  .price-tag {
+    display: inline-flex; align-items: baseline; gap: 8px; margin-bottom: 32px;
+  }
+  .price-tag .num { font-family: 'Cormorant Garamond', serif; font-size: 44px; color: var(--gold); }
+  .price-tag .note { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; }
+
+  .btn-primary {
+    display: inline-block; background: var(--gold); color: var(--black);
+    font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; padding: 20px 44px;
+    text-decoration: none; border-radius: 2px;
+  }
+  .btn-primary:active { background: var(--gold-lt); }
+  .cta-note { font-size: 12px; color: var(--muted); margin-top: 16px; }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  .section-title { font-size: clamp(24px, 4vw, 30px); margin-bottom: 28px; text-align: center; }
+
+  /* Problem bullets */
+  .bullets { display: flex; flex-direction: column; gap: 18px; }
+  .bullet { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; }
+  .bullet::before { content: '→'; color: var(--gold); flex-shrink: 0; }
+
+  /* What's included */
+  .included-card {
+    background: var(--card); border: 1px solid var(--border); padding: 32px; margin-top: 8px;
+  }
+  .included-card h3 { font-size: 22px; margin-bottom: 12px; }
+  .included-card p { font-size: 14px; color: var(--text); margin-bottom: 16px; }
+  .included-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .included-list li { font-size: 14px; display: flex; gap: 10px; }
+  .included-list li::before { content: '◆'; color: var(--gold); font-size: 12px; margin-top: 3px; }
+
+  /* Process — numbered because it IS a real sequence the prospect will go through */
+  .process { display: flex; flex-direction: column; gap: 24px; }
+  .process-step { display: flex; gap: 18px; align-items: flex-start; }
+  .process-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--gold);
+    width: 40px; flex-shrink: 0;
+  }
+  .process-step h4 { font-size: 17px; color: var(--cream); font-family: 'Jost', sans-serif; font-weight: 500; margin-bottom: 4px; }
+  .process-step p { font-size: 13px; color: var(--muted); }
+
+  /* Verbatim */
+  .verbatim { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-style: italic; color: var(--cream); text-align: center; line-height: 1.6; margin-bottom: 12px; }
+  .verbatim-sig { text-align: center; font-size: 12px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* Final CTA */
+  #final-cta { text-align: center; border-bottom: none; padding-bottom: 72px; }
+
+  footer { text-align: center; padding: 32px 0; font-size: 11px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<section id="hero">
+  <div class="container">
+    <p class="logo">STRÆM<span>.</span></p>
+    <p class="eyebrow">Accélérateur Marché — Médico-Social</p>
+    <h1>Votre solution est prête.<br>Savez-vous <em>où</em> elle bloque ?</h1>
+    <p class="hero-sub">Un diagnostic ciblé, en une semaine, pour savoir précisément ce qui freine votre entrée sur le marché médico-social — EHPAD, HAD, SSIAD, FAM.</p>
+    <div class="price-tag">
+      <span class="num">990 €</span>
+      <span class="note">HT — sans engagement</span>
+    </div>
+    <br>
+    <a href="questionnaire.html" class="btn-primary">Démarrer mon diagnostic</a>
+    <p class="cta-note">5 minutes pour répondre au questionnaire — restitution sous 5 à 7 jours ouvrés</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="section-title">Le médico-social n'achète pas comme les autres marchés</h2>
+    <div class="bullets">
+      <p class="bullet">Vos messages commerciaux ont été pensés pour un acheteur rationnel — ce secteur achète sur la confiance et la preuve sociale</p>
+      <p class="bullet">Les vrais décisionnaires (DG, DSI, Directeur des Soins…) ne sont pas toujours ceux que vous ciblez</p>
+      <p class="bullet">Sans le savoir, vous perdez peut-être des mois sur des interlocuteurs ou des arguments qui ne mènent nulle part</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="section-title">Ce que vous recevez</h2>
+    <div class="included-card">
+      <h3>Rapport de Diagnostic STRÆM <span class="gold">— Format Essentiel</span></h3>
+      <p>Une évaluation ciblée de votre positionnement face aux codes réels du marché médico-social.</p>
+      <ul class="included-list">
+        <li>Évaluation de votre promesse commerciale actuelle</li>
+        <li>Identification des frictions les plus coûteuses dans votre approche</li>
+        <li>Recommandations priorisées, actionnables immédiatement</li>
+        <li>Restitution en visio, avec envoi du rapport écrit par email</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="section-title">Comment ça se passe</h2>
+    <div class="process">
+      <div class="process-step">
+        <span class="process-num">01</span>
+        <div><h4>Vous répondez au questionnaire</h4><p>5 minutes, pour me donner les premiers éléments sur votre solution et votre approche actuelle.</p></div>
+      </div>
+      <div class="process-step">
+        <span class="process-num">02</span>
+        <div><h4>RDV découverte (20 min, visio)</h4><p>Je creuse ce que le questionnaire n'a pas dit. Réservation directe après le questionnaire.</p></div>
+      </div>
+      <div class="process-step">
+        <span class="process-num">03</span>
+        <div><h4>Je prépare votre diagnostic</h4><p>Analyse et rédaction du rapport, sous 5 à 7 jours ouvrés.</p></div>
+      </div>
+      <div class="process-step">
+        <span class="process-num">04</span>
+        <div><h4>RDV de restitution (30 min, visio)</h4><p>Je vous présente les résultats à l'oral, puis vous recevez le rapport complet par email.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="verbatim">"Ce rapport ne dit pas ce que vous faites mal. Il dit pourquoi votre solution n'est pas encore désirable aux yeux de ceux qui ont le pouvoir de l'acheter."</p>
+    <p class="verbatim-sig">Bertrand Mars — Fondateur STRÆM, 15 ans de terrain médico-social</p>
+  </div>
+</section>
+
+<section id="final-cta">
+  <div class="container">
+    <h2 class="section-title">990 € pour savoir exactement où porter votre attention</h2>
+    <a href="questionnaire.html" class="btn-primary">Démarrer mon diagnostic</a>
+  </div>
+</section>
+
+<footer>© STRÆM — Dijon, Bourgogne-Franche-Comté</footer>
+
+</body>
+</html>
